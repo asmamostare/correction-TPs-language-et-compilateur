@@ -57,9 +57,25 @@ public class serie1ex5 {
     // -------------- Question 6 ----------------
     public static boolean op(String lexem){
         String[] arr = {"+","-","*","/"};
-            for( int i=0;i<lexem.length();i++)
+            for( int i=0;i<arr.length;i++)
                 if(arr[i].equals(lexem))
                     return true;
+           return false;
+        }
+    // -------------- Question 6 ----------------
+    public static boolean oprela(String lexem){
+        String[] arr = {">","<","=",">=","<="};
+            for( int i=0;i<arr.length;i++)
+                if(arr[i].equals(lexem))
+                    return true;
+            return false;
+        }
+    // -------------- Question 6 ----------------
+    public static boolean motReserve(String lexem){
+        List arr = new ArrayList<>();
+        Collections.addAll(arr ,"auto","double","int","struct","break","else","long","switch","case","enum","register","typedef","char","extern","return","union","continue","for","signed","void","do","if","static","while","default","goto","sizeof","volatile","const","float","short","unsigned");
+            if(arr.contains(lexem))
+                return true;
             return false;
         }
     
@@ -77,20 +93,26 @@ public class serie1ex5 {
         while (mot.hasMoreTokens()) {
         mots=mot.nextToken();
         
-        if (lettre(mots))
-            System.out.println(mots + " :lettres");
+        //if (lettre(mots))
+        //    System.out.println("<"+ mots + ">" + " :lettres");
+        //else 
+        if(motReserve(mots))
+             System.out.println("<"+ mots + " , " + mots.toUpperCase()+">");
         else if(id(mots))
-                System.out.println(mots + " :id");
+            System.out.println("<"+ mots + ", Id>".toUpperCase());
         else if(entier(mots))
-            System.out.println(mots + " :Int");
+            System.out.println("<"+ mots + ", Int>".toUpperCase());
         else if(lettrechiffre(mots))
-             System.out.println(mots + " :lettres et chifre");
+             System.out.println("<"+ mots + ", lettres et chifre>".toUpperCase());
         else if (flaot(mots))
-            System.out.println(mots + " :Float");
+            System.out.println("<"+ mots + ", Float>".toUpperCase());
         else if (op(mots))
-            System.out.println(mots + " :Operateur");
+            System.out.println("<"+ mots + ", Operateur>".toUpperCase());
+        else if (oprela(mots))
+            System.out.println("<"+ mots + ", Operateur relationnel>".toUpperCase());
         else
-            System.out.println(mots + " :incorect");
+            System.out.println("<"+ mots + ", Incorect>".toUpperCase());
+            }
             }
         }
     }
